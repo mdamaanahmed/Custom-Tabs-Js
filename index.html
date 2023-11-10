@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Amita:wght@400;700&family=Carter+One&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Serif:wght@300;400;500;600&family=Lobster&family=Merriweather&family=Noto+Serif:wght@400;700&family=Pacifico&family=Poppins:ital,wght@0,300;0,400;0,600;1,500&family=Roboto+Slab:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <title>Tabs</title>
+  </head>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+    [data-tab-content] {
+      display: none;
+    }
+    .active[data-tab-content] {
+      display: block;
+    }
+    [data-tab-content] {
+      margin: 50px;
+    }
+    [data-tab-content] > p {
+      text-align: center;
+    }
+    .tabs {
+      display: flex;
+      justify-content: center;
+    }
+    .tabs > li {
+      list-style: none;
+      margin: 20px;
+      padding: 10px 40px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .tabs > li:hover {
+      background-color: rgb(245, 245, 245);
+    }
+    .tabs > li.active {
+      background-color: rgb(210, 210, 210);
+    }
+  </style>
+
+  <body>
+    <div class="container">
+      <ul class="tabs">
+        <li data-tab-target="#tab1" class="active">Tab 1</li>
+        <li data-tab-target="#tab2">Tab 2</li>
+        <li data-tab-target="#tab3">Tab 3</li>
+        <li data-tab-target="#tab4">Tab 4</li>
+      </ul>
+      <div class="content">
+        <div id="tab1" data-tab-content class="active">
+          <p>Hello from Tab 1</p>
+        </div>
+        <div id="tab2" data-tab-content>
+          <p>Hello from Tab 2</p>
+        </div>
+        <div id="tab3" data-tab-content>
+          <p>Hello from Tab 3</p>
+        </div>
+        <div id="tab4" data-tab-content>
+          <p>Hello from Tab 4</p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const tabs = document.querySelectorAll("[data-tab-target]");
+      const tabsContent = document.querySelectorAll("[data-tab-content]");
+
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          const targetedTabId = document.querySelector(tab.dataset.tabTarget);
+          tabs.forEach((tab) => tab.classList.remove("active"));
+          tab.classList.add("active");
+          tabsContent.forEach((content) => content.classList.remove("active"));
+          targetedTabId.classList.add("active");
+        });
+      });
+    </script>
+  </body>
+</html>
